@@ -1,7 +1,7 @@
 # SQLMAP-AUDITOR
 ## OWASP'S AUTOMATED AUDITOR USING SQLMAP.
 
-Usage: python sql-auditor.py
+Usage: python sql-auditor.py docker.website.eu:46550/adminpanel/index.php?id=0
 
 | LANGUAGE | FILENAME            | MD5 HASH                         | 
 |--------  |---------            |---------                         | 
