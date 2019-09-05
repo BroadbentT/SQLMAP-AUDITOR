@@ -16,11 +16,7 @@
 
 import os
 import sys
-import subprocess
 import os.path
-import fileinput
-import shutil
-import linecache
 from termcolor import colored					# pip install termcolor
 
 # -------------------------------------------------------------------------------------
@@ -41,6 +37,9 @@ if len(sys.argv) < 2:
 
 fileName = sys.argv[1]
 
+if os.path.exists("logs") == 0:
+   os.system("mkdir logs")
+
 # -------------------------------------------------------------------------------------
 # AUTHOR  : Terence Broadbent                                                    
 # CONTRACT: GitHub
@@ -50,14 +49,23 @@ fileName = sys.argv[1]
 # -------------------------------------------------------------------------------------
 
 os.system("clear")
-print " ____   ___  _     __  __    _    ____       _   _   _ ____ ___ _____ ___  ____   "
-print "/ ___| / _ \| |   |  \/  |  / \  |  _ \     / \ | | | |  _ \_ _|_   _/ _ \|  _ \  "
-print "\___ \| | | | |   | |\/| | / _ \ | |_) |   / _ \| | | | | | | |  | || | | | |_) | "
-print " ___) | |_| | |___| |  | |/ ___ \|  __/   / ___ \ |_| | |_| | |  | || |_| |  _ <  "
-print "|____/ \__\_\_____|_|  |_/_/   \_\_|     /_/   \_\___/|____/___| |_| \___/|_| \_\ "
-print "                                                                                  "
-print "              BY TERENCE BROADBENT BSC CYBER SECURITY (FIRST CLASS)              \n"
+print "\t\t\t ____   ___  _     __  __    _    ____       _   _   _ ____ ___ _____ ___  ____   "
+print "\t\t\t/ ___| / _ \| |   |  \/  |  / \  |  _ \     / \ | | | |  _ \_ _|_   _/ _ \|  _ \  "
+print "\t\t\t\___ \| | | | |   | |\/| | / _ \ | |_) |   / _ \| | | | | | | |  | || | | | |_) | "
+print "\t\t\t ___) | |_| | |___| |  | |/ ___ \|  __/   / ___ \ |_| | |_| | |  | || |_| |  _ <  "
+print "\t\t\t|____/ \__\_\_____|_|  |_/_/   \_\_|     /_/   \_\___/|____/___| |_| \___/|_| \_\ "
+print "\t\t\t                                                                                  "
+print "\t\t\t              BY TERENCE BROADBENT BSC CYBER SECURITY (FIRST CLASS)             \n"
 
+# ------------------------------------------------------------------------------------- 
+# AUTHOR  : Terence Broadbent                                                    
+# CONTRACT: GitHub
+# Version : 1.0                                                                
+# Details : Initialise program variables.
+# Modified: N/A
+# -------------------------------------------------------------------------------------
+
+command = "sqlmap -v 2 -u http://" + fileName + " --data='username=admin&password=admin' --user-agent=SQLMAP --delay=1 --timeout=15 --retries=2 --keep-alive --threads=5 --batch --dbms=MySQL --os=Linux --level=5 --risk=3  --tamper=space2comment --cookie='PHPSESSIONID=sirkdou58nuhqmbtu29bmib58v; security=low' --banner --is-dba --dbs --tables --technique=BEUST -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
@@ -67,14 +75,12 @@ print "              BY TERENCE BROADBENT BSC CYBER SECURITY (FIRST CLASS)      
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
-command = "sqlmap -v 2 -u http://" + fileName + " --data='username=admin&password=admin' --user-agent=SQLMAP --delay=1 --timeout=15 --retries=2 --keep-alive --threads=5 --batch --dbms=MySQL --os=Linux --level=5 --risk=3  --tamper=space2comment --cookie='PHPSESSIONID=so6nbe8a6injaapdllrqfc2t7t; security=low' --banner --is-dba --dbs --tables --technique=BEUST -s scan_report.txt --flush-session -t scan_trace.txt --fresh-queries > scan_out.txt"
-
-print "SQL COMMAND STRUCTURE:-"
+print "SCAN COMMAND:"
 print "-"*134
 print colored(command,'blue')
 print "-"*134
-
 print "\nStarting scan, please wait this can take some time!!..."
+
 os.system(command)
 
 # ------------------------------------------------------------------------------------- 
@@ -86,15 +92,17 @@ os.system(command)
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
-injectable = False # Flag to know if global audit is OK
-fileName1  = "scan_out.txt"
+injectable = False
+fileName1  = "logs/scan_out.txt"
 fileName2  = "scan_out.html"
+
 inputFile  = open(fileName1,"r")
 outputFile = open(fileName2,"w")
 
 # -------------------------------------------------------------------------------------
 # Details : Initialize HTML report stream.
 # -------------------------------------------------------------------------------------
+
 outputFile.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\">")
 outputFile.write("<head><link rel=\"StyleSheet\" href=\"style.css\" type=\"text/css\" media=\"screen\" /><title>SQLMap HTML Report</title></head>")
 outputFile.write("<body><table id=\"myStyle\">")
@@ -104,6 +112,7 @@ outputFile.write("<tbody>")
 # -------------------------------------------------------------------------------------
 # Details : Read STDOUT file line by line.
 # -------------------------------------------------------------------------------------
+
 for line in inputFile:
    if (line.strip().startswith("[")) and (line.find("[*]") == -1):
       if(line.lower().find("all parameters are not injectable") > -1):
@@ -121,17 +130,20 @@ for line in inputFile:
 outputFile.write("</tbody></table>")  
       
 # -------------------------------------------------------------------------------------
-# Details : Write global audit stauts line.
+# Details : Write global audit stats line.
 # -------------------------------------------------------------------------------------
+
 if(injectable):
    outputFile.write("<h1 class=\"success\">SQLMap cannot find injectable parameters !</h1>")
 else:
    outputFile.write("<h1 class=\"fail\">SQLMap can find injectable parameters !</h1>")
+
+# -------------------------------------------------------------------------------------
+# Details : Close open file and tidy up.
 # -------------------------------------------------------------------------------------
 
 outputFile.write("</body></html>")
 outputFile.close()
 inputFile.close()
-
 print "\nReport generated to " + fileName2 + "\n"
 #End

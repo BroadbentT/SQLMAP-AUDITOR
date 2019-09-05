@@ -1,11 +1,11 @@
-# SQL AUDITOR
+# SQLMAP AUDITOR
 ## A PYTHON SCRIPT FILE TO PERFORM OWASP’S AUTOMATED AUDIT TESTS AGAINST WEB APPLICATION PROJECTS USING SQLMAP.
 
 Usage: python sql-auditor.py docker.website.eu:46550/adminpanel/index.php?id=0
 
 | LANGUAGE | FILENAME       | MD5 HASH                         | 
 |--------  |---------       |---------                         | 
-| python   | sql-auditor.py | 9774077d330ab3ebb2357da0e8616ffb | 
+| python   | sql-auditor.py | 77e80485382d909a53296ff3370b8c9b | 
 | html     | scan_out.html  | ed231383cbc035c41eea679027e1f861 | 
 | css      | style.css      | 988339bb494857ed7c2439ea9a7fc494 |
 
