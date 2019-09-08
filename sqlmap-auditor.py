@@ -35,7 +35,7 @@ if len(sys.argv) < 2:
    print "Use the command python sqlmap-auditor.py website.com..."
    exit(True)
 
-fileName = sys.argv[1]
+webName = sys.argv[1]
 
 if os.path.exists("logs") == 0:
    os.system("mkdir logs")
@@ -65,7 +65,7 @@ print "\t\t\t              BY TERENCE BROADBENT BSC CYBER SECURITY (FIRST CLASS)
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
-command = "sqlmap -v 2 -u http://" + fileName + " --data='username=admin&password=admin' --user-agent=SQLMAP --delay=1 --timeout=15 --retries=2 --keep-alive --threads=5 --batch --dbms=MySQL --os=Linux --level=5 --risk=3  --tamper=space2comment --cookie='PHPSESSIONID=sirkdou58nuhqmbtu29bmib58v; security=low' --banner --is-dba --dbs --tables --technique=BEUST -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
+command = "sqlmap -v 2 -u http://" + webName + " --data='username=admin&password=admin' --user-agent=SQLMAP --delay=1 --timeout=15 --retries=2 --keep-alive --threads=5 --batch --dbms=MySQL --os=Linux --level=5 --risk=3  --tamper=space2comment --cookie='PHPSESSIONID=sirkdou58nuhqmbtu29bmib58v; security=low' --banner --is-dba --dbs --tables --technique=BEUST -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
@@ -93,11 +93,11 @@ os.system(command)
 # -------------------------------------------------------------------------------------
 
 injectable = False
-fileName1  = "logs/scan_out.txt"
-fileName2  = "scan_out.html"
+webName1  = "logs/scan_out.txt"
+webName2  = "scan_out.html"
 
-inputFile  = open(fileName1,"r")
-outputFile = open(fileName2,"w")
+inputFile  = open(webName1,"r")
+outputFile = open(webName2,"w")
 
 # -------------------------------------------------------------------------------------
 # Details : Initialize HTML report stream.
@@ -145,5 +145,5 @@ else:
 outputFile.write("</body></html>")
 outputFile.close()
 inputFile.close()
-print "\nReport generated to " + fileName2 + "\n"
+print "\nReport generated to " + webName2 + "\n"
 #End

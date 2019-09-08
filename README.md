@@ -5,7 +5,7 @@ Usage: python sql-auditor.py docker.website.eu:46550
 
 | LANGUAGE | FILENAME       | MD5 HASH                         | 
 |--------  |---------       |---------                         | 
-| python   | sql-auditor.py | 77e80485382d909a53296ff3370b8c9b | 
+| python   | sql-auditor.py | 0a9eac7b403b82bd550d157c157fcf81 | 
 | html     | scan_out.html  | ed231383cbc035c41eea679027e1f861 | 
 | css      | style.css      | 988339bb494857ed7c2439ea9a7fc494 |
 
