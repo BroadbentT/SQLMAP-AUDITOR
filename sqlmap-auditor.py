@@ -93,11 +93,11 @@ os.system(command)
 # -------------------------------------------------------------------------------------
 
 injectable = False
-webName1  = "logs/scan_out.txt"
-webName2  = "scan_out.html"
+Filename1  = "logs/scan_out.txt"
+Filename2  = "scan_out.html"
 
-inputFile  = open(webName1,"r")
-outputFile = open(webName2,"w")
+inputFile  = open(Filename1,"r")
+outputFile = open(Filename2,"w")
 
 # -------------------------------------------------------------------------------------
 # Details : Initialize HTML report stream.
@@ -145,5 +145,5 @@ else:
 outputFile.write("</body></html>")
 outputFile.close()
 inputFile.close()
-print "\nReport generated to " + webName2 + "\n"
+print "\nReport generated to " + Filename2 + "\n"
 #End
