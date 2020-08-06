@@ -17,7 +17,6 @@
 import os
 import sys
 import os.path
-from termcolor import colored					# pip install termcolor
 
 # -------------------------------------------------------------------------------------
 # AUTHOR  : Terence Broadbent                                                    
@@ -28,14 +27,14 @@ from termcolor import colored					# pip install termcolor
 # -------------------------------------------------------------------------------------
 
 if os.geteuid() != 0:
-   print "Please run this python script as root..."
+   print("Please run this python script as root...")
    exit(True)
 
 if len(sys.argv) < 2:
-   print "Use the command python sqlmap-auditor.py website.com..."
+   print("Use the command python sqlmap-auditor.py https://website.com...")
    exit(True)
 
-webName = sys.argv[1]
+WebName = sys.argv[1]
 
 if os.path.exists("logs") == 0:
    os.system("mkdir logs")
@@ -49,13 +48,57 @@ if os.path.exists("logs") == 0:
 # -------------------------------------------------------------------------------------
 
 os.system("clear")
-print "\t\t\t ____   ___  _     __  __    _    ____       _   _   _ ____ ___ _____ ___  ____   "
-print "\t\t\t/ ___| / _ \| |   |  \/  |  / \  |  _ \     / \ | | | |  _ \_ _|_   _/ _ \|  _ \  "
-print "\t\t\t\___ \| | | | |   | |\/| | / _ \ | |_) |   / _ \| | | | | | | |  | || | | | |_) | "
-print "\t\t\t ___) | |_| | |___| |  | |/ ___ \|  __/   / ___ \ |_| | |_| | |  | || |_| |  _ <  "
-print "\t\t\t|____/ \__\_\_____|_|  |_/_/   \_\_|     /_/   \_\___/|____/___| |_| \___/|_| \_\ "
-print "\t\t\t                                                                                  "
-print "\t\t\t              BY TERENCE BROADBENT BSC CYBER SECURITY (FIRST CLASS)             \n"
+print("\t\t\t ____   ___  _     __  __    _    ____       _   _   _ ____ ___ _____ ___  ____   ")
+print("\t\t\t/ ___| / _ \| |   |  \/  |  / \  |  _ \     / \ | | | |  _ \_ _|_   _/ _ \|  _ \  ")
+print("\t\t\t\___ \| | | | |   | |\/| | / _ \ | |_) |   / _ \| | | | | | | |  | || | | | |_) | ")
+print("\t\t\t ___) | |_| | |___| |  | |/ ___ \|  __/   / ___ \ |_| | |_| | |  | || |_| |  _ <  ")
+print("\t\t\t|____/ \__\_\_____|_|  |_/_/   \_\_|     /_/   \_\___/|____/___| |_| \___/|_| \_\ ")
+print("\t\t\t                                                                                  ")
+print("\t\t\t              BY TERENCE BROADBENT BSC CYBER SECURITY (FIRST CLASS)             \n")
+
+# ------------------------------------------------------------------------------------- 
+# AUTHOR  : Terence Broadbent                                                    
+# CONTRACT: GitHub
+# Version : 1.0                                                                
+# Details : Populate program variables.
+# Modified: N/A
+# -------------------------------------------------------------------------------------
+
+KnownDataBases = "MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase, SAP MaxDB, Informix, MariaDB, Percona, MemSQL, TiDB, CockroachDB, HSQLDB, H2, MonetDB, Apache Derby, Amazon Redshift, Vertica, Mckoi, Presto, Altibase, MimerSQL, CrateDB, Greenplum, Drizzle, Apache Ignite, Cubrid, InterSystems Cache, IRIS, eXtremeDB, FrontBase"
+KnownDataBases = KnownDataBases.lower()
+DataBase       = ""
+UserName       = ""
+PassWord       = ""
+
+# ------------------------------------------------------------------------------------- 
+# AUTHOR  : Terence Broadbent                                                    
+# CONTRACT: GitHub
+# Version : 1.0                                                                
+# Details : Select the correct database to examine.
+# Modified: N/A
+# -------------------------------------------------------------------------------------
+
+DataBase = input("[*] Please enter the database type you wish to audit: ")
+
+if DataBase not in KnownDataBases:
+   print("[-] The entered database type was not found...")
+   exit(1)
+
+# ------------------------------------------------------------------------------------- 
+# AUTHOR  : Terence Broadbent                                                    
+# CONTRACT: GitHub
+# Version : 1.0                                                                
+# Details : Select the correct username and password.
+# Modified: N/A
+# -------------------------------------------------------------------------------------
+
+UserName = input("[*] Please enter a username (defualt administrator) : ")
+PassWord = input("[*] Please enter a password (defualt administrator) : ")
+
+if UserName == "":
+   UserName = "administrator"
+if PassWord == "":
+   PassWord = "administrator"
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
@@ -65,7 +108,7 @@ print "\t\t\t              BY TERENCE BROADBENT BSC CYBER SECURITY (FIRST CLASS)
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
-command = "sqlmap -v 2 -u http://" + webName + " --data='username=admin&password=admin' --user-agent=SQLMAP --delay=1 --timeout=15 --retries=2 --keep-alive --threads=5 --batch --dbms=MySQL --os=Linux --level=5 --risk=3  --tamper=space2comment --cookie='PHPSESSIONID=sirkdou58nuhqmbtu29bmib58v; security=low' --banner --is-dba --dbs --tables --technique=BEUST -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
+command = "sqlmap -v 2 -u " + WebName + " --data='username=" + UserName + "&password=" + PassWord + "' --random-agent --delay=1 --timeout=15 --retries=2 --keep-alive --threads=5 --batch --dbms=" + DataBase + " --level=5 --risk=3  --tamper=space2comment --cookie='PHPSESSIONID=sirkdou58nuhqmbtu29bmib58v; security=low' --banner --is-dba --dbs --tables --technique=BEUST -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
@@ -75,11 +118,11 @@ command = "sqlmap -v 2 -u http://" + webName + " --data='username=admin&password
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
-print "SCAN COMMAND:"
-print "-"*134
-print colored(command,'blue')
-print "-"*134
-print "\nStarting scan, please wait this can take some time!!..."
+print("\nSCAN COMMAND:")
+print("-"*164)
+print(command)
+print("-"*164)
+print("\nStarting scan, please wait this can take some time!!...")
 
 os.system(command)
 
@@ -145,5 +188,5 @@ else:
 outputFile.write("</body></html>")
 outputFile.close()
 inputFile.close()
-print "\nReport generated to " + Filename2 + "\n"
+print("\nReport generated to " + Filename2 + "\n")
 #End
