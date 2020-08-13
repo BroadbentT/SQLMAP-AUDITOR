@@ -27,11 +27,11 @@ import os.path
 # -------------------------------------------------------------------------------------
 
 if os.geteuid() != 0:
-   print("Please run this python script as root...")
+   print "Please run this python script as root..."
    exit(True)
 
 if len(sys.argv) < 2:
-   print("Use the command python sqlmap-auditor.py https://website.com...")
+   print "Use the command python sqlmap-auditor.py https://website.com/index.php?id=1000..."
    exit(True)
 
 WebName = sys.argv[1]
@@ -48,57 +48,13 @@ if os.path.exists("logs") == 0:
 # -------------------------------------------------------------------------------------
 
 os.system("clear")
-print("\t\t\t ____   ___  _     __  __    _    ____       _   _   _ ____ ___ _____ ___  ____   ")
-print("\t\t\t/ ___| / _ \| |   |  \/  |  / \  |  _ \     / \ | | | |  _ \_ _|_   _/ _ \|  _ \  ")
-print("\t\t\t\___ \| | | | |   | |\/| | / _ \ | |_) |   / _ \| | | | | | | |  | || | | | |_) | ")
-print("\t\t\t ___) | |_| | |___| |  | |/ ___ \|  __/   / ___ \ |_| | |_| | |  | || |_| |  _ <  ")
-print("\t\t\t|____/ \__\_\_____|_|  |_/_/   \_\_|     /_/   \_\___/|____/___| |_| \___/|_| \_\ ")
-print("\t\t\t                                                                                  ")
-print("\t\t\t              BY TERENCE BROADBENT BSC CYBER SECURITY (FIRST CLASS)             \n")
-
-# ------------------------------------------------------------------------------------- 
-# AUTHOR  : Terence Broadbent                                                    
-# CONTRACT: GitHub
-# Version : 1.0                                                                
-# Details : Populate program variables.
-# Modified: N/A
-# -------------------------------------------------------------------------------------
-
-KnownDataBases = "MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase, SAP MaxDB, Informix, MariaDB, Percona, MemSQL, TiDB, CockroachDB, HSQLDB, H2, MonetDB, Apache Derby, Amazon Redshift, Vertica, Mckoi, Presto, Altibase, MimerSQL, CrateDB, Greenplum, Drizzle, Apache Ignite, Cubrid, InterSystems Cache, IRIS, eXtremeDB, FrontBase"
-KnownDataBases = KnownDataBases.lower()
-DataBase       = ""
-UserName       = ""
-PassWord       = ""
-
-# ------------------------------------------------------------------------------------- 
-# AUTHOR  : Terence Broadbent                                                    
-# CONTRACT: GitHub
-# Version : 1.0                                                                
-# Details : Select the correct database to examine.
-# Modified: N/A
-# -------------------------------------------------------------------------------------
-
-DataBase = input("[*] Please enter the database type you wish to audit: ")
-
-if DataBase not in KnownDataBases:
-   print("[-] The entered database type was not found...")
-   exit(1)
-
-# ------------------------------------------------------------------------------------- 
-# AUTHOR  : Terence Broadbent                                                    
-# CONTRACT: GitHub
-# Version : 1.0                                                                
-# Details : Select the correct username and password.
-# Modified: N/A
-# -------------------------------------------------------------------------------------
-
-UserName = input("[*] Please enter a username (defualt administrator) : ")
-PassWord = input("[*] Please enter a password (defualt administrator) : ")
-
-if UserName == "":
-   UserName = "administrator"
-if PassWord == "":
-   PassWord = "administrator"
+print "\t\t\t\t\t ____   ___  _     __  __    _    ____       _   _   _ ____ ___ _____ ___  ____   "
+print "\t\t\t\t\t/ ___| / _ \| |   |  \/  |  / \  |  _ \     / \ | | | |  _ \_ _|_   _/ _ \|  _ \  "
+print "\t\t\t\t\t\___ \| | | | |   | |\/| | / _ \ | |_) |   / _ \| | | | | | | |  | || | | | |_) | "
+print "\t\t\t\t\t ___) | |_| | |___| |  | |/ ___ \|  __/   / ___ \ |_| | |_| | |  | || |_| |  _ <  "
+print "\t\t\t\t\t|____/ \__\_\_____|_|  |_/_/   \_\_|     /_/   \_\___/|____/___| |_| \___/|_| \_\ "
+print "\t\t\t\t\t                                                                                  "
+print "\t\t\t\t\t              BY TERENCE BROADBENT BSC CYBER SECURITY (FIRST CLASS)             \n"
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
@@ -108,7 +64,49 @@ if PassWord == "":
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
-command = "sqlmap -v 2 -u " + WebName + " --data='username=" + UserName + "&password=" + PassWord + "' --random-agent --delay=1 --timeout=15 --retries=2 --keep-alive --threads=5 --batch --dbms=" + DataBase + " --level=5 --risk=3  --tamper=space2comment --cookie='PHPSESSIONID=sirkdou58nuhqmbtu29bmib58v; security=low' --banner --is-dba --dbs --tables --technique=BEUST -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
+UserName	= "Administrator"
+PassWord	= "Administrator"
+UserAgent	= "SQLMAP"
+DataBase 	= "MySQL"
+OperatingSys	= "Linux"
+Tamper		= "space2comment"
+CookieValue	= "l3q63lsm8t3cms26154p56at62"
+Technique	= "BEUSTQ"
+
+VerboseLevel	= 6
+TimeDelay	= 5
+TimeOut		= 10
+Retries		= 3
+Threads		= 10 
+Level 		= 5
+Risk		= 3
+
+# ------------------------------------------------------------------------------------- 
+# AUTHOR  : Terence Broadbent                                                    
+# CONTRACT: GitHub
+# Version : 1.0                                                                
+# Details : Build Display
+# Modified: N/A
+# -------------------------------------------------------------------------------------
+
+print "*"*165
+print "* THE TARGET URL: " + WebName
+print "* PHP SESSION ID: " + CookieValue
+print "* USERNAME      : " + UserName
+print "* PASSWORD      : " + PassWord 
+print "* TARGET SYSTEM : " + OperatingSys
+print "* DATABASE TYPE : " + DataBase
+print "* USER AGENT    : " + UserAgent
+print "* ENUM TECHNIQUE: " + Technique
+print "* TAMPER LEVEL  : " + Tamper
+print "* VERBOSE LEVEL : " + str(VerboseLevel)
+print "* TEST LEVEL    : " + str(Level)
+print "* RISK LEVEL    : " + str(Risk)
+print "* SET TIME DELAY: " + str(TimeDelay)
+print "* SET TIME OUT  : " + str(TimeOut)
+print "* SET RETRIES   : " + str(Retries)
+print "* SET THREADS   : " + str(Threads)
+print "*"*165
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent                                                    
@@ -118,12 +116,9 @@ command = "sqlmap -v 2 -u " + WebName + " --data='username=" + UserName + "&pass
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
-print("\nSCAN COMMAND:")
-print("-"*164)
-print(command)
-print("-"*164)
-print("\nStarting scan, please wait this can take some time!!...")
+command = "sqlmap -v " + str(VerboseLevel) + " -u " + WebName + " --data='username=" + UserName + "&password=" + PassWord + "' --user-agent=" + UserAgent + " --delay=" + str(TimeDelay) + " --timeout=" + str(TimeOut) + " --retries=" + str(Retries) + " --keep-alive --threads=" + str(Threads) + " --batch --dbms=" + DataBase + " --os=" + OperatingSys + " --level=" + str(Level) + " --risk=" + str(Risk) + " --tamper=" + Tamper + " --cookie='PHPSESSIONID=" + CookieValue + "; security=low' --banner --is-dba --dbs --tables --technique=" + Technique + " -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
 
+print "\nStarting scan, please wait this can take several hours!!..."
 os.system(command)
 
 # ------------------------------------------------------------------------------------- 
@@ -147,7 +142,7 @@ outputFile = open(Filename2,"w")
 # -------------------------------------------------------------------------------------
 
 outputFile.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\">")
-outputFile.write("<head><link rel=\"StyleSheet\" href=\"style.css\" type=\"text/css\" media=\"screen\" /><title>SQLMap HTML Report</title></head>")
+outputFile.write("<head><link rel=\"StyleSheet\" href=\"style.css\" type=\"text/css\" media=\"screen\" /><title>SQLMap HTML Audit Report</title></head>")
 outputFile.write("<body><table id=\"myStyle\">")
 outputFile.write("<thead><tr><th scope=\"col\">Test datetime</th><th scope=\"col\">Test description</th></tr></thead>")
 outputFile.write("<tbody>")
@@ -158,9 +153,9 @@ outputFile.write("<tbody>")
 
 for line in inputFile:
    if (line.strip().startswith("[")) and (line.find("[*]") == -1):
-      if(line.lower().find("all parameters are not injectable") > -1):
+      if(line.lower().find("all parameters are not injectable") > -1):		        # Check for special message indicating audit global status
          injectable = True
-      line_part = line.strip().split(" ")
+      line_part = line.strip().split(" ")					        # Report generation
       catchdata = line_part[2] if len(line_part) > 2 else 'null'
       if catchdata == "testing":
          execution_datatime = line_part[0]
@@ -188,5 +183,5 @@ else:
 outputFile.write("</body></html>")
 outputFile.close()
 inputFile.close()
-print("\nReport generated to " + Filename2 + "\n")
+print "\nReport generated to " + Filename2 + "\n"
 #End
