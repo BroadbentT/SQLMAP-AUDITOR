@@ -16,4 +16,4 @@ This python script file aims to provide to the development team a quick and easy
 
 ### CONSOLE DISPLAY
 ![Screenshot](picture1.png) 
-
+![Screenshot](SQLMapExampleReport.png)
