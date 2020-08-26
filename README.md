@@ -2,6 +2,7 @@
 ## A PYTHON SCRIPT FILE TO PERFORM OWASP’S AUTOMATED AUDIT TESTS AGAINST WEB APPLICATION PROJECTS USING SQLMAP.
 
 ![Screenshot](picture0.png) 
+![Screenshot](risk.png) 
 
 Usage: python3 sql-auditor.py docker.website.eu:46550
 
