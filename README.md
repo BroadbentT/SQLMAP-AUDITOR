@@ -17,8 +17,8 @@ FURTHER INFORMATION
 - [x] https://github.com/sqlmapproject/sqlmap/wiki/Usage
         
         The scan take a while then it's recommended to schedule is execution:
-        During the night for a daily audit case.
-        During the week-end for a weekly audit case.
+                During the night for a daily audit case.
+                During the week-end for a weekly audit case.
 
 ### CONSOLE DISPLAY
 ![Screenshot](picture1.png) 
