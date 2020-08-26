@@ -17,6 +17,7 @@
 import os
 import sys
 import os.path
+import datetime
 
 # -------------------------------------------------------------------------------------
 # AUTHOR  : Terence Broadbent                                                    
@@ -290,10 +291,10 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='9':
-      print("\nStarting scan, please wait this can take several hours!!...\n")
-      os.system(command)
-
       injectable = False
+      print("[*] Audit start", datetime.datetime.now())
+      os.system(command)
+      
       Filename1  = "logs/scan_out.txt"
       Filename2  = "scan_out.html"
 
@@ -315,12 +316,13 @@ while True:
 # -------------------------------------------------------------------------------------
 
       for line in inputFile:
-         if (line.strip().startswith("[")) and (line.find("[*]") == -1):
-            if(line.lower().find("all parameters are not injectable") > -1):		# Check for special message indicating audit global status
-               injectable = True
-            if(line.lower().find("critical") > -1):					# Check for critical error message
+         if (line.strip().startswith("[")) and (line.find("[*]") == -1):         
+            if(line.lower().find("[critical]") > -1):					# Check for critical error messages
                print(line)
                CRIT = 1
+            print(line)
+            if(line.lower().find("all parameters are not injectable") > -1):		# Check for special message indicating audit global status
+               injectable = True  
             line_part = line.strip().split(" ")					        # Report generation
             catchdata = line_part[2] if len(line_part) > 2 else 'null'
             if catchdata == "testing":
