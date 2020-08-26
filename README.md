@@ -14,11 +14,12 @@ This python script file aims to provide to the development team a quick and easy
 
 FURTHER INFORMATION
 - [x] https://www.owasp.org/index.php/Automated_Audit_using_SQLMap
-- [x] https://github.com/sqlmapproject/sqlmap/wiki/Usage
+[x] https://github.com/sqlmapproject/sqlmap/wiki/Usage
         
-        The scan take a while then it's recommended to schedule is execution:
-                During the night for a daily audit case.
-                During the week-end for a weekly audit case.
+        The scan can take a while, it's recommended to schedule is execution as follows -
+        
+        During the night for a daily audit case.
+        During the week-end for a weekly audit case.
 
 ### CONSOLE DISPLAY
 ![Screenshot](picture1.png) 
