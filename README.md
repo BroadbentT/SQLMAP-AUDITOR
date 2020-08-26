@@ -12,7 +12,7 @@ Usage: python3 sql-auditor.py docker.website.eu:46550
 
 This python script file aims to provide to the development team a quick and easy way to perform automated audit tests against their web application projects over the implementation phase.
 
-- [x] Further information is available here:
+- [x] Further information available here.
 
         https://www.owasp.org/index.php/Automated_Audit_using_SQLMap
         https://github.com/sqlmapproject/sqlmap/wiki/Usage
