@@ -28,3 +28,5 @@ RUNNING GUIDANCE
 
 ### REPORT DISPLAY
 ![Screenshot](ExampleReport-1.png)
+![Screenshot](ExampleReport-2.png)
+
