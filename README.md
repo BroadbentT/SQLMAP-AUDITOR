@@ -7,7 +7,7 @@ Usage: python3 sql-auditor.py docker.website.eu:46550
 
 | LANGUAGE | FILENAME       | MD5 HASH                         | 
 |--------  |---------       |---------                         | 
-| python   | sql-auditor.py | f302c24d889e43a9cd7041bab18c6301 | 
+| python   | sql-auditor.py | 1a7976952d9d52a5297f958c73982185 | 
 | css      | style.css      | 988339bb494857ed7c2439ea9a7fc494 |
 
 This python script-file aims to provide the development team with a quick and easy way to perform automated audit tests against their own web application projects over it's implementation phase.
@@ -27,4 +27,4 @@ RUNNING GUIDANCE
 ![Screenshot](picture1.png) 
 
 ### REPORT DISPLAY
-![Screenshot](SQLMapExampleReport.png)
+![Screenshot](ExampleReport-1.png)
