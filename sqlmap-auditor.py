@@ -59,20 +59,19 @@ def banner():
    print("\t\t\t\t\t              BY TERENCE BROADBENT BSC CYBER SECURITY (FIRST CLASS)             \n")
    
 def display():
-   print("-"*165)
-   print(" [1] THE TARGET URL: " + WebName[:PAD1] 	+ " [10] TAMPER STRING : " + Tamper[:PAD2]   	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
-   print(" [2] PHP SESSION ID: " + CookieValue[:PAD1]	+ " [11] VERBOSE LEVEL : " + VerboseLevel[:PAD2] + "[xx] UNALLOCATED :" + Blank[:PAD2])
-   print(" [3] USERNAME      : " + UserName[:PAD1]	+ " [12] TEST LEVEL    : " + Level[:PAD2]	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
-   print(" [4] PASSWORD      : " + PassWord[:PAD1]	+ " [13] RISK LEVEL    : " + Risk[:PAD2]	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
-   print(" [5] TARGET SYSTEM : " + OperatingSys[:PAD1]	+ " [14] SET TIME OUT  : " + TimeOut[:PAD2]  	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
-   print(" [6] DATABASE TYPE : " + DataBase[:PAD1]	+ " [15] SET TIME OUT  : " + TimeOut[:PAD2] 	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
-   print(" [7] USER AGENT    : " + UserAgent[:PAD1]	+ " [16] SET RETRIES   : " + Retries[:PAD2]	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
-   print(" [8] ENUM TECHNIQUE: " + Technique[:PAD1]	+ " [17] SET THREADS   : " + Threads[:PAD2]	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
-   print(" [9] PARAMETER     : " + Parameter[:PAD1]      + " [xx] UNALLOCATED   : " + Blank[:PAD2]	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
-   print("="*165)
-   print(" [0] RUN AUDITOR     " + " "*(22+PAD1+PAD2)	+ "[99] EXIT")
-   print("-"*165)
-
+   print('\u2554' + ('\u2550')*89 + '\u2566' + ('\u2550')*30 + '\u2566' + ('\u2550')*42 + '\u2557')
+   print('\u2551' + "[1] THE TARGET URL: " + WebName[:PAD1] 	 + '\u2551' + " [10] TAMPER STRING : " + Tamper[:PAD2]  + '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[2] PHP SESSION ID: " + CookieValue[:PAD1]	 + '\u2551' + " [11] VERBOSE LEVEL : " + VLevel[:PAD2]  + '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[3] USERNAME      : " + UserName[:PAD1]	 + '\u2551' + " [12] TEST LEVEL    : " + Level[:PAD2]	+ '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[4] PASSWORD      : " + PassWord[:PAD1]	 + '\u2551' + " [13] RISK LEVEL    : " + Risk[:PAD2]	+ '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[5] TARGET SYSTEM : " + OperatingSys[:PAD1] + '\u2551' + " [14] SET TIME OUT  : " + TimeOut[:PAD2] + '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[6] DATABASE TYPE : " + DataBase[:PAD1]	 + '\u2551' + " [15] SET TIME OUT  : " + TimeOut[:PAD2] + '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[7] USER AGENT    : " + UserAgent[:PAD1]	 + '\u2551' + " [16] SET RETRIES   : " + Retries[:PAD2]	+ '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[8] ENUM TECHNIQUE: " + Technique[:PAD1]	 + '\u2551' + " [17] SET THREADS   : " + Threads[:PAD2]	+ '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[9] PARAMETER     : " + Parameter[:PAD1]    + '\u2551' + " [xx] UNALLOCATED   : " + Blank1[:PAD2]	+ '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
+   print('\u2560' + ('\u2550')*89 + '\u2569' + ('\u2550')*10 + ('\u2550')*20 + '\u2569' + ('\u2550')*42 + '\u2563')
+   print('\u2551' + "[0] RUN AUDITOR     " + " "*(PAD1) + " "*(74) + '\u2551')
+   print('\u255A' + ('\u2550')*90 + ('\u2550')*73 + '\u255D')
 
 def padding(variable,value):
    variable = variable.rstrip("\n")
@@ -92,8 +91,9 @@ def pause():
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
-PAD1		= 70
-PAD2		= 10
+PAD1		= 69
+PAD2		= 8
+PAD3		= 23
 
 UserName	= "Administrator"
 PassWord	= "Administrator"
@@ -115,23 +115,25 @@ UserAgent	= padding(UserAgent, PAD1)
 Technique	= padding(Technique, PAD1)
 Parameter	= padding(Parameter, PAD1)
 
-VerboseLevel	= "6"
+VLevel		= "6"
 TimeDelay	= "5"
 TimeOut		= "10"
 Retries		= "3"
 Threads		= "10"
 Level 		= "5"
 Risk		= "3"
-Blank		= " "
+Blank1		= " "
+Blank2		= " "
 
-VerboseLevel	= padding(VerboseLevel, PAD2)
+Blank1 		= padding(Blank1, PAD2)
+Blank2		= padding(Blank2, PAD3)
+VLevel		= padding(VLevel, PAD2)
 TimeDelay	= padding(TimeDelay, PAD2)
 TimeOut		= padding(TimeOut, PAD2)
 Retries		= padding(Retries, PAD2)
 Threads		= padding(Threads, PAD2)
 Level 		= padding(Level, PAD2)
 Risk		= padding(Risk, PAD2)
-Blank 		= padding(Blank, PAD2)
 Tamper		= padding(Tamper, PAD2)
 
 OSList		= "Linux, Windows"
@@ -179,7 +181,7 @@ while True:
       injectable = True
       print("[*] Audit start", datetime.datetime.now())
 
-      command = "sqlmap -v " + VerboseLevel.rstrip(" ") + " -u " + WebName.rstrip(" ") + "-p " + Parameter.rstrip(" ") +  " --data='username=" + UserName.rstrip(" ") + "&password=" + PassWord.rstrip(" ") + "' --user-agent='" + UserAgent.rstrip(" ") + "' --delay=" + TimeDelay.rstrip(" ") + " --timeout=" + TimeOut.rstrip(" ") + " --retries=" + Retries.rstrip(" ") + " --keep-alive --threads=" + Threads.rstrip(" ") + " --batch --dbms=" + DataBase.rstrip(" ") + " --os=" + OperatingSys.rstrip(" ") + " --level=" + Level.rstrip(" ") + " --risk=" + Risk.rstrip(" ") + " --tamper=" + Tamper_SeLEC.rstrip(" ") + " --cookie='PHPSESSIONID=" + CookieValue.rstrip(" ") + "; security=low' --banner --is-dba --dbs --tables --technique=" + Technique.rstrip(" ") + " --dump-all -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
+      command = "sqlmap -v " + VLevel.rstrip(" ") + " -u " + WebName.rstrip(" ") + "-p " + Parameter.rstrip(" ") +  " --data='username=" + UserName.rstrip(" ") + "&password=" + PassWord.rstrip(" ") + "' --user-agent='" + UserAgent.rstrip(" ") + "' --delay=" + TimeDelay.rstrip(" ") + " --timeout=" + TimeOut.rstrip(" ") + " --retries=" + Retries.rstrip(" ") + " --keep-alive --threads=" + Threads.rstrip(" ") + " --batch --dbms=" + DataBase.rstrip(" ") + " --os=" + OperatingSys.rstrip(" ") + " --level=" + Level.rstrip(" ") + " --risk=" + Risk.rstrip(" ") + " --tamper=" + Tamper_SeLEC.rstrip(" ") + " --cookie='PHPSESSIONID=" + CookieValue.rstrip(" ") + "; security=low' --banner --is-dba --dbs --tables --technique=" + Technique.rstrip(" ") + " --dump-all -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
       # print(command); exit(0) # Debug command
       os.system(command)
       
@@ -407,18 +409,18 @@ while True:
 # AUTHOR  : Terence Broadbent
 # CONTRACT: GitHub
 # Version : 1.0
-# Details : Change the value of VerboseLevel
+# Details : Change the value of VLevel
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
    if selection =='11':
       print("[+] Available Options:", VEList)
-      Restore = VerboseLevel
-      VerboseLevel = input("[*] Please enter verbose value: ")
-      if VerboseLevel != "" and VerboseLevel in VEList:
-         VerboseLevel = padding(VerboseLevel, PAD2)
+      Restore = VLevel
+      VLevel = input("[*] Please enter VLevel value: ")
+      if VLevel != "" and VLevel in VEList:
+         VLevel = padding(VLevel, PAD2)
       else:
-         VerboseLevel = Restore
+         VLevel = Restore
    
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
