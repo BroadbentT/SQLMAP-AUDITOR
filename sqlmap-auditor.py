@@ -60,16 +60,17 @@ def banner():
    
 def display():
    print("-"*165)
-   print(" [1] THE TARGET URL: " + WebName[:PAD1] 	+ " [10] WAF BYPASS    : " + Tamper)
-   print(" [2] PHP SESSION ID: " + CookieValue[:PAD1]	+ " [11] VERBOSE LEVEL : " + str(VerboseLevel)) 
-   print(" [3] USERNAME      : " + UserName[:PAD1]	+ " [12] TEST LEVEL    : " + str(Level))
-   print(" [4] PASSWORD      : " + PassWord[:PAD1]	+ " [13] RISK LEVEL    : " + str(Risk))
-   print(" [5] TARGET SYSTEM : " + OperatingSys[:PAD1]	+ " [14] SET TIME DELAY: " + str(TimeDelay))
-   print(" [6] DATABASE TYPE : " + DataBase[:PAD1]	+ " [15] SET TIME OUT  : " + str(TimeOut))
-   print(" [7] USER AGENT    : " + UserAgent[:PAD1]	+ " [16] SET RETRIES   : " + str(Retries))
-   print(" [8] ENUM TECHNIQUE: " + Technique[:PAD1]	+ " [17] SET THREADS   : " + str(Threads))
+   print(" [1] THE TARGET URL: " + WebName[:PAD1] 	+ " [10] TAMPER STRING : " + Tamper[:PAD2]   	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
+   print(" [2] PHP SESSION ID: " + CookieValue[:PAD1]	+ " [11] VERBOSE LEVEL : " + VerboseLevel[:PAD2] + "[xx] UNALLOCATED :" + Blank[:PAD2])
+   print(" [3] USERNAME      : " + UserName[:PAD1]	+ " [12] TEST LEVEL    : " + Level[:PAD2]	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
+   print(" [4] PASSWORD      : " + PassWord[:PAD1]	+ " [13] RISK LEVEL    : " + Risk[:PAD2]	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
+   print(" [5] TARGET SYSTEM : " + OperatingSys[:PAD1]	+ " [14] SET TIME OUT  : " + TimeOut[:PAD2]  	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
+   print(" [6] DATABASE TYPE : " + DataBase[:PAD1]	+ " [15] SET TIME OUT  : " + TimeOut[:PAD2] 	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
+   print(" [7] USER AGENT    : " + UserAgent[:PAD1]	+ " [16] SET RETRIES   : " + Retries[:PAD2]	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
+   print(" [8] ENUM TECHNIQUE: " + Technique[:PAD1]	+ " [17] SET THREADS   : " + Threads[:PAD2]	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
+   print(" [9] PARAMETER     : " + Parameter[:PAD1]      + " [xx] UNALLOCATED   : " + Blank[:PAD2]	 + "[xx] UNALLOCATED :" + Blank[:PAD2])
    print("="*165)
-   print(" [9] RUN AUDITOR     " + " "*PAD1	 	+ " [18] EXIT PROGRAM")
+   print(" [0] RUN AUDITOR     " + " "*(22+PAD1+PAD2)	+ "[99] EXIT")
    print("-"*165)
 
 
@@ -91,18 +92,18 @@ def pause():
 # Modified: N/A
 # -------------------------------------------------------------------------------------
 
-PAD1		= 80
-PAD2		= 40
-CRIT		= 0
+PAD1		= 70
+PAD2		= 10
 
 UserName	= "Administrator"
 PassWord	= "Administrator"
 OperatingSys	= "Linux"
 DataBase 	= "MySQL"
-UserAgent	= "SQLMAP"
+UserAgent	= "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"
 Tamper		= "General"
-CookieValue	= "su9q2tmc91dj9vvhsoj2nrapi4"
+CookieValue	= "o63gbsl0leeco50eh8frl72nf2"
 Technique	= "BEUSTQ"
+Parameter	= "ID"
 
 WebName 	= padding(WebName, PAD1)
 CookieValue	= padding(CookieValue, PAD1)
@@ -112,6 +113,7 @@ OperatingSys	= padding(OperatingSys, PAD1)
 DataBase	= padding(DataBase, PAD1)
 UserAgent	= padding(UserAgent, PAD1)
 Technique	= padding(Technique, PAD1)
+Parameter	= padding(Parameter, PAD1)
 
 VerboseLevel	= "6"
 TimeDelay	= "5"
@@ -120,6 +122,17 @@ Retries		= "3"
 Threads		= "10"
 Level 		= "5"
 Risk		= "3"
+Blank		= " "
+
+VerboseLevel	= padding(VerboseLevel, PAD2)
+TimeDelay	= padding(TimeDelay, PAD2)
+TimeOut		= padding(TimeOut, PAD2)
+Retries		= padding(Retries, PAD2)
+Threads		= padding(Threads, PAD2)
+Level 		= padding(Level, PAD2)
+Risk		= padding(Risk, PAD2)
+Blank 		= padding(Blank, PAD2)
+Tamper		= padding(Tamper, PAD2)
 
 OSList		= "Linux, Windows"
 DBList		= "MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase, SAP MaxDB, Informix, MariaDB, Percona, MemSQL, TiDB2, CockroachDB, HSQLDB, H2, MonetDB, Apache Derby, Amazon Redshift, Vertica, Mckoi, Presto, Altibase, MimerSQL, CrateDB, Greenplum, Drizzle, Apache Ignite, Cubrid, InterSystems Cache, IRIS, eXtremeDB, FrontBase"
@@ -131,10 +144,13 @@ DEList		= "1, 2, 3, 4, 5"
 TOList		= "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30"
 REList		= "1, 2, 3"
 TRList		= "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+THList		= "B: Boolean-based blind, E: Error-based, U: Union query-based, S: Stacked queries, T: Time-based blind, Q: Inline queries"
 
 Tamper_GeSQL 	= "'apostrophemask, apostrophenullencode, base64encode, between, chardoubleencode, charencode, charunicodeencode, equaltolike, greatest, ifnull2ifisnull, multiplespaces, percentage, randomcase, space2comment, space2plus, space2randomblank, unionalltounion, unmagicquotes'"
 Tamper_MsSQL	= "'between, charencode, charunicodeencode, equaltolike, greatest, multiplespaces, percentage, randomcase, sp_password, space2comment, space2dash, space2mssqlblank, space2mysqldash, space2plus, space2randomblank, unionalltounion, unmagicquotes'"
 Tamper_MySQL	= "'between, bluecoat, charencode, charunicodeencode, concat2concatws, equaltolike, greatest, halfversionedmorekeywords, ifnull2ifisnull, modsecurityversioned, modsecurityzeroversioned, multiplespaces, percentage, randomcase, space2comment, space2hash, space2morehash, space2mysqldash, space2plus, space2randomblank, unionalltounion, unmagicquotes, versionedkeywords, versionedmorekeywords, xforwardedfor'"
+
+Tamper_SeLEC	= Tamper_GeSQL
 
 # -------------------------------------------------------------------------------------
 # AUTHOR  : Terence Broadbent                                                    
@@ -147,17 +163,87 @@ Tamper_MySQL	= "'between, bluecoat, charencode, charunicodeencode, concat2concat
 while True: 
    os.system("clear")
    banner()
-   display()
-   
-   if Tamper == "General":
-      command = "\n\nsqlmap -v " + VerboseLevel + " -u " + WebName.rstrip(" ") + " --data='username=" + UserName.rstrip(" ") + "&password=" + PassWord.rstrip(" ") + "' --user-agent=" + UserAgent.rstrip(" ") + " --delay=" + TimeDelay + " --timeout=" + TimeOut + " --retries=" + Retries + " --keep-alive --threads=" + Threads + " --batch --dbms=" + DataBase.rstrip(" ") + " --os=" + OperatingSys.rstrip(" ") + " --level=" + Level + " --risk=" + Risk + " --tamper=" + Tamper_GeSQL + " --cookie='PHPSESSIONID=" + CookieValue.rstrip(" ") + "; security=low' --banner --is-dba --dbs --tables --technique=" + Technique.rstrip(" ") + " --dump-all -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
-   if Tamper == "MySQL":
-      command = "\n\nsqlmap -v " + VerboseLevel + " -u " + WebName.rstrip(" ") + " --data='username=" + UserName.rstrip(" ") + "&password=" + PassWord.rstrip(" ") + "' --user-agent=" + UserAgent.rstrip(" ") + " --delay=" + TimeDelay + " --timeout=" + TimeOut + " --retries=" + Retries + " --keep-alive --threads=" + Threads + " --batch --dbms=" + DataBase.rstrip(" ") + " --os=" + OperatingSys.rstrip(" ") + " --level=" + Level + " --risk=" + Risk + " --tamper=" + Tamper_MySQL + " --cookie='PHPSESSIONID=" + CookieValue.rstrip(" ") + "; security=low' --banner --is-dba --dbs --tables --technique=" + Technique.rstrip(" ") + " --dump-all -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
-   if Tamper == "MsSQL":
-      command = "\n\nsqlmap -v " + VerboseLevel + " -u " + WebName.rstrip(" ") + " --data='username=" + UserName.rstrip(" ") + "&password=" + PassWord.rstrip(" ") + "' --user-agent=" + UserAgent.rstrip(" ") + " --delay=" + TimeDelay + " --timeout=" + TimeOut + " --retries=" + Retries + " --keep-alive --threads=" + Threads + " --batch --dbms=" + DataBase.rstrip(" ") + " --os=" + OperatingSys.rstrip(" ") + " --level=" + Level + " --risk=" + Risk + " --tamper=" + Tamper_MsSQL + " --cookie='PHPSESSIONID=" + CookieValue.rstrip(" ") + "; security=low' --banner --is-dba --dbs --tables --technique=" + Technique.rstrip(" ") + " --dump-all -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
-   # print(command) # DEBUG
-
+   display()  
    selection=input("\n[*] Please Select: ")
+   
+# ------------------------------------------------------------------------------------- 
+# AUTHOR  : Dominique Righetto - dominique.righetto@owasp.org                                            
+# CONTRACT: GitHub
+# Version : March 2012                   
+# Details : Script to generate a HTML report from a SQLMap stdout output.
+# Modified: 4/9/2019
+# AUTHOR  : Terence Broadbent
+# -------------------------------------------------------------------------------------
+
+   if selection =='0':
+      injectable = True
+      print("[*] Audit start", datetime.datetime.now())
+
+      command = "sqlmap -v " + VerboseLevel.rstrip(" ") + " -u " + WebName.rstrip(" ") + "-p " + Parameter.rstrip(" ") +  " --data='username=" + UserName.rstrip(" ") + "&password=" + PassWord.rstrip(" ") + "' --user-agent='" + UserAgent.rstrip(" ") + "' --delay=" + TimeDelay.rstrip(" ") + " --timeout=" + TimeOut.rstrip(" ") + " --retries=" + Retries.rstrip(" ") + " --keep-alive --threads=" + Threads.rstrip(" ") + " --batch --dbms=" + DataBase.rstrip(" ") + " --os=" + OperatingSys.rstrip(" ") + " --level=" + Level.rstrip(" ") + " --risk=" + Risk.rstrip(" ") + " --tamper=" + Tamper_SeLEC.rstrip(" ") + " --cookie='PHPSESSIONID=" + CookieValue.rstrip(" ") + "; security=low' --banner --is-dba --dbs --tables --technique=" + Technique.rstrip(" ") + " --dump-all -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
+      # print(command); exit(0) # Debug command
+      os.system(command)
+      
+      Filename1  = "logs/scan_out.txt"
+      Filename2  = "scan_out.html"
+      
+      os.system("touch " + Filename1)
+      os.system("touch " + Filename2)
+
+      inputFile  = open(Filename1,"r")
+      outputFile = open(Filename2,"w")
+      
+# -------------------------------------------------------------------------------------
+# Details : Initialize HTML report stream.
+# -------------------------------------------------------------------------------------
+
+      outputFile.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\">")
+      outputFile.write("<head><link rel=\"StyleSheet\" href=\"style.css\" type=\"text/css\" media=\"screen\" /><title>SQLMap HTML Audit Report</title></head>")
+      outputFile.write("<body><table id=\"myStyle\">")
+      outputFile.write("<thead><tr><th scope=\"col\">Test datetime</th><th scope=\"col\">Test description</th></tr></thead>")
+      outputFile.write("<tbody>")
+      outputFile.write("<h1 class=\"success\">\t\t\tSQLMAP AUDITOR 2020</h1>")
+
+# -------------------------------------------------------------------------------------
+# Details : Read STDOUT file line by line.
+# -------------------------------------------------------------------------------------
+
+      for line in inputFile:
+         if (line.strip().startswith("[")) and (line.find("[*]") == -1):         
+            if(line.lower().find("[critical]") > -1):					# Check for critical error messages
+               print(line)
+            if(line.lower().find("all parameters are not injectable") > -1):		# Check for special message indicating audit global status
+               injectable = False  
+            line_part = line.strip().split(" ")					        # Report generation
+            catchdata = line_part[2] if len(line_part) > 2 else 'null'
+            if catchdata == "testing":
+               execution_datatime = line_part[0]
+               execution_trace = ""
+               count = 2
+               while(count < len(line_part)):
+                  execution_trace = execution_trace + " " + line_part[count]
+                  count = count + 1 
+               outputFile.write("<tr><td>" + line_part[0] + "</td><td>" + execution_trace + "</td></tr>")                
+      outputFile.write("</tbody></table>")  
+      
+# -------------------------------------------------------------------------------------
+# Details : Write global audit stats line.
+# -------------------------------------------------------------------------------------
+
+      if(injectable):
+         outputFile.write("<h1 class=\"success\">SQLMap cannot find injectable parameters !</h1>")
+      else:
+         outputFile.write("<h1 class=\"fail\">SQLMap can find injectable parameters !</h1>")
+
+# -------------------------------------------------------------------------------------
+# Details : Close open file and tidy up.
+# -------------------------------------------------------------------------------------
+
+      outputFile.write("</body></html>") 
+      outputFile.close()
+      inputFile.close() 
+      print("[*] Audit finish", datetime.datetime.now())
+      print("Report generated to " + Filename2 + "\n")
+      exit(1)
    
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
@@ -169,7 +255,7 @@ while True:
 
    if selection =='1':
       Restore = WebName.rstrip(" ")
-      WebName = input("[*] Please enter WebName value: ")
+      WebName = input("[*] Please enter the url string: ")
       if WebName == "":
          WebName = Restore
       WebName = padding(WebName, PAD1)
@@ -199,7 +285,7 @@ while True:
 
    if selection =='3':
       Restore = UserName.rstrip(" ")
-      UserName = input("[*] Please enter UserName value: ")
+      UserName = input("[*] Please enter username: ")
       if UserName == "":
          UserName = Restore
       UserName = padding(UserName, PAD1)
@@ -214,7 +300,7 @@ while True:
 
    if selection =='4':
       Restore = PassWord.rstrip(" ")
-      PassWord = input("[*] Please enter PassWord value: ")
+      PassWord = input("[*] Please enter password: ")
       if PassWord == "":
          PassWord = Restore
       PassWord = padding(PassWord, PAD1)
@@ -228,16 +314,13 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='5':
-      Restore = OperatingSys.rstrip(" ")
-      OperatingSys = input("[*] Please enter OperatingSys value: ")
-      if OperatingSys == "":
-         OperatingSys = Restore         
-      if OperatingSys in OSList:
+      print("[+] Available Options:", OSList)
+      Restore = OperatingSys
+      OperatingSys = input("[*] Please enter operating system: ")
+      if OperatingSys != "" and OperatingSys in OSList:
          OperatingSys = padding(OperatingSys, PAD1)
       else:
          OperatingSys = Restore
-         print("[-] Available Options:", OSList)
-         pause()
             
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
@@ -246,20 +329,32 @@ while True:
 # Details : Change Value of DataBase
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
-
+       
    if selection =='6':
-      Restore = DataBase.rstrip(" ")
-      DataBase = input("[*] Please enter DataBase value: ")
-      if DataBase == "":
-         DataBase = Restore
-      if DataBase in DBList:
+      print("[+] Available Options:", DBList)
+      Restore = DataBase
+      DataBase = input("[*] Please enter database: ")
+      if DataBase != "" and DataBase in DBList:
          DataBase = padding(DataBase, PAD1)
       else:
-         DataBase = Restore        
-         print("[-] Available Options:", DBList)
-         pause()
+         DataBase = Restore
 
 # ------------------------------------------------------------------------------------- 
+# AUTHOR  : Terence Broadbent
+# CONTRACT: GitHub
+# Version : 1.0
+# Details : Change value of UserAgent
+# AUTHOR  : Terence Broadbent
+# -------------------------------------------------------------------------------------
+
+   if selection =='7':
+      Restore = UserAgent
+      UserAgent = input("[*] Please enter username: ")
+      if UserAgent == "":
+         UserAgent = Restore
+      UserAgent = padding(UserAgent, PAD1)
+   
+## ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
 # CONTRACT: GitHub
 # Version : 1.0
@@ -267,116 +362,46 @@ while True:
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
-   if selection =='7':
-      exit(0)
+   if selection =='8':
+      print("[+] Available Options:", THList)
+      Restore = Technique
+      Technique = input("[*] Please enter technique values: ")
+      if Technique != "":
+         Technique = padding(Technique, PAD1)
+      else:
+         Technique = Restore
    
 ## ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
 # CONTRACT: GitHub
 # Version : 1.0
-# Details : 
-# AUTHOR  : Terence Broadbent
-# -------------------------------------------------------------------------------------
-
-   if selection =='8':
-      exit(0)
-   
-# ------------------------------------------------------------------------------------- 
-# AUTHOR  : Dominique Righetto - dominique.righetto@owasp.org                                            
-# CONTRACT: GitHub
-# Version : March 2012                   
-# Details : Script to generate a HTML report from a SQLMap stdout output.
-# Modified: 4/9/2019
+# Details : Change value of Parameter
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
    if selection =='9':
-      injectable = False
-      print("[*] Audit start", datetime.datetime.now())
-      os.system(command)
+      Restore = Parameter
+      Parameter = input("[*] Please enter parameter value: ")
+      if Parameter == "":
+         Parameter = Restore
+      Parameter = padding(Parameter, PAD1)
       
-      Filename1  = "logs/scan_out.txt"
-      Filename2  = "scan_out.html"
-
-      inputFile  = open(Filename1,"r")
-      outputFile = open(Filename2,"w")
-      
-# -------------------------------------------------------------------------------------
-# Details : Initialize HTML report stream.
-# -------------------------------------------------------------------------------------
-
-      outputFile.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\">")
-      outputFile.write("<head><link rel=\"StyleSheet\" href=\"style.css\" type=\"text/css\" media=\"screen\" /><title>SQLMap HTML Audit Report</title></head>")
-      outputFile.write("<body><table id=\"myStyle\">")
-      outputFile.write("<thead><tr><th scope=\"col\">Test datetime</th><th scope=\"col\">Test description</th></tr></thead>")
-      outputFile.write("<tbody>")
-
-# -------------------------------------------------------------------------------------
-# Details : Read STDOUT file line by line.
-# -------------------------------------------------------------------------------------
-
-      for line in inputFile:
-         if (line.strip().startswith("[")) and (line.find("[*]") == -1):         
-            if(line.lower().find("[critical]") > -1):					# Check for critical error messages
-               print(line)
-               CRIT = 1
-            print(line)
-            if(line.lower().find("all parameters are not injectable") > -1):		# Check for special message indicating audit global status
-               injectable = True  
-            line_part = line.strip().split(" ")					        # Report generation
-            catchdata = line_part[2] if len(line_part) > 2 else 'null'
-            if catchdata == "testing":
-               execution_datatime = line_part[0]
-               execution_trace = ""
-               count = 2
-               while(count < len(line_part)):
-                  execution_trace = execution_trace + " " + line_part[count]
-                  count = count + 1 
-               outputFile.write("<tr><td>" + line_part[0] + "</td><td>" + execution_trace + "</td></tr>")                
-      outputFile.write("</tbody></table>")  
-      
-# -------------------------------------------------------------------------------------
-# Details : Write global audit stats line.
-# -------------------------------------------------------------------------------------
-
-      if(injectable):
-         outputFile.write("<h1 class=\"success\">SQLMap cannot find injectable parameters !</h1>")
-      else:
-         outputFile.write("<h1 class=\"fail\">SQLMap can find injectable parameters !</h1>")
-
-# -------------------------------------------------------------------------------------
-# Details : Close open file and tidy up.
-# -------------------------------------------------------------------------------------
-
-      outputFile.write("</body></html>") 
-      outputFile.close()
-      inputFile.close() 
-      if CRIT != 1:
-         print("Report generated to " + Filename2 + "\n")
-      exit(1)
-
-## ------------------------------------------------------------------------------------- 
+# ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
 # CONTRACT: GitHub
 # Version : 1.0
-# Details : Change value of Tamper
+# Details : Change the value of Tamper
 # AUTHOR  : Terence Broadbent
-# -------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------- 
 
    if selection =='10':
-      Restore = Tamper.rstrip(" ")
-      Tamper = input("[*] Please enter Tamper value: ")
-      if Tamper == "":
-         Tamper = Restore
-      if Tamper in TAList:
+      print("[+] Available Options:", TAList)
+      Restore = Tamper
+      Tamper = input("[*] Please enter tamper value: ")
+      if Tamper != "" and Tamper in TAList:
          Tamper = padding(Tamper, PAD2)
       else:
-         Tamper = Restore        
-         print("[-] Available Options:")
-         print("\n[+] General which contains -", Tamper_GeSQL.strip("'"))
-         print("\n[+] MsSQL which contains -", Tamper_MsSQL.strip("'"))
-         print("\n[+] MySQL which contains -", Tamper_MySQL.strip("'"))
-         pause()
+         Tamper = Restore 
              
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
@@ -387,16 +412,13 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='11':
-      Restore = VerboseLevel.rstrip(" ")
-      VerboseLevel = input("[*] Please enter Verbose value: ")
-      if VerboseLevel == "":
-         VerboseLevel = Restore         
-      if VerboseLevel in VEList:
+      print("[+] Available Options:", VEList)
+      Restore = VerboseLevel
+      VerboseLevel = input("[*] Please enter verbose value: ")
+      if VerboseLevel != "" and VerboseLevel in VEList:
          VerboseLevel = padding(VerboseLevel, PAD2)
       else:
          VerboseLevel = Restore
-         print("[-] Available Options:", VEList)
-         pause()
    
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
@@ -407,16 +429,13 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='12':
-      Restore = Level.rstrip(" ")
-      Level = input("[*] Please enter Level value: ")
-      if Level == "":
-         Level = Restore         
-      if Level in TEList:
+      print("[+] Available Options:", TEList)
+      Restore = Level
+      Level = input("[*] Please enter test level value: ")
+      if Level != "" and Level in TEList:
          Level = padding(Level, PAD2)
       else:
          Level = Restore
-         print("[-] Available Options:", TEList)
-         pause()
       
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
@@ -427,16 +446,13 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='13':
-      Restore = Risk.rstrip(" ")
-      Risk = input("[*] Please enter Risk value: ")
-      if Risk == "":
-         Risk = Restore         
-      if Risk in RIList:
+      print("[+] Available Options:", RIList)
+      Restore = Risk
+      Risk = input("[*] Please enter risk value: ")
+      if Risk != "" and Risk in RIList:
          Risk = padding(Risk, PAD2)
       else:
          Risk = Restore
-         print("[-] Available Options:", RIList)
-         pause()
       
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
@@ -447,16 +463,13 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='14':
-      Restore = TimeDelay.rstrip(" ")
-      TimeDelay = input("[*] Please enter TimeDelay value: ")
-      if TimeDelay == "":
-         TimeDelay = Restore         
-      if TimeDelay in DEList:
+      print("[+] Available Options:", DEList)
+      Restore = TimeDelay
+      TimeDelay = input("[*] Please enter time delay value: ")
+      if TimeDelay != "" and TimeDelay in DEList:
          TimeDelay = padding(TimeDelay, PAD2)
       else:
          TimeDelay = Restore
-         print("[-] Available Options:", DEList)
-         pause()
 
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
@@ -467,16 +480,13 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='15':
-      Restore = TimeOut.rstrip(" ")
-      TimeOut = input("[*] Please enter TimeOut value: ")
-      if TimeOut == "":
-         TimeOut = Restore         
-      if TimeOut in TOList:
+      print("[+] Available Options:", TOList)
+      Restore = TimeOut
+      TimeOut = input("[*] Please enter timeOut value: ")
+      if TimeOut != "" and TimeOut in TOList:
          TimeOut = padding(TimeOut, PAD2)
       else:
          TimeOut = Restore
-         print("[-] Available Options:", TOList)
-         pause()
          
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
@@ -487,19 +497,16 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='16':
-      Restore = Retries.rstrip(" ")
-      Retries = input("[*] Please enter Retries value: ")
-      if Retries == "":
-         Retries = Restore         
-      if Retries in REList:
+      print("[+] Available Options:", REList)
+      Restore = Retries
+      Retries = input("[*] Please enter retries value: ")
+      if Retries != "" and Retries in REList:
          Retries = padding(Retries, PAD2)
       else:
          Retries = Restore
-         print("[-] Available Options:", REList)
-         pause()        
-      
+         
 # ------------------------------------------------------------------------------------- 
-# AUTHOR  : Dominique Righetto - dominique.righetto@owasp.org                                            
+# AUTHOR  : Terence Broadbent
 # CONTRACT: GitHub
 # Version : 1.0
 # Details : Change the value of Threads
@@ -507,25 +514,22 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='17':
-      Restore = Threads.rstrip(" ")
-      Threads = input("[*] Please enter Threads value: ")
-      if Threads == "":
-         Threads = Restore         
-      if Threads in TRList:
+      print("[+] Available Options:", TRList)
+      Restore = Threads
+      Threads = input("[*] Please enter threads value: ")
+      if Threads != "" and Threads in TRList:
          Threads = padding(Threads, PAD2)
       else:
          Threads = Restore
-         print("[-] Available Options:", TRList)
-         pause()  
                
 # ------------------------------------------------------------------------------------- 
-# AUTHOR  : Dominique Righetto - dominique.righetto@owasp.org                                            
+# AUTHOR  : Terence Broadbent
 # CONTRACT: GitHub
 # Version : 1.0
 # Details : Exit Program
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
-   if selection =='18':
+   if selection =='99':
       exit(1)
 #End
