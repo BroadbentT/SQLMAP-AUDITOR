@@ -100,10 +100,10 @@ PassWord	= "Administrator"
 OperatingSys	= "Linux"
 DataBase 	= "MySQL"
 UserAgent	= "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"
-Tamper		= "General"
-CookieValue	= "o63gbsl0leeco50eh8frl72nf2"
+Tamper		= "None"
+CookieValue	= "7gusgp9fpo1ql5hr8gt2apah90"
 Technique	= "BEUSTQ"
-Parameter	= "ID"
+Parameter	= "id"
 
 WebName 	= padding(WebName, PAD1)
 CookieValue	= padding(CookieValue, PAD1)
@@ -138,7 +138,7 @@ Tamper		= padding(Tamper, PAD2)
 
 OSList		= "Linux, Windows"
 DBList		= "MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase, SAP MaxDB, Informix, MariaDB, Percona, MemSQL, TiDB2, CockroachDB, HSQLDB, H2, MonetDB, Apache Derby, Amazon Redshift, Vertica, Mckoi, Presto, Altibase, MimerSQL, CrateDB, Greenplum, Drizzle, Apache Ignite, Cubrid, InterSystems Cache, IRIS, eXtremeDB, FrontBase"
-TAList		= "General, MsSQL, MySQL"
+TAList		= "None, General, MsSQL, MySQL"
 VEList		= "1, 2, 3, 4, 5, 6"
 TEList		= "1, 2, 3, 4, 5"
 RIList		= "1, 2, 3"
@@ -148,11 +148,12 @@ REList		= "1, 2, 3"
 TRList		= "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
 THList		= "B: Boolean-based blind, E: Error-based, U: Union query-based, S: Stacked queries, T: Time-based blind, Q: Inline queries"
 
+Tamper_NoSQL	= ""
 Tamper_GeSQL 	= "'apostrophemask, apostrophenullencode, base64encode, between, chardoubleencode, charencode, charunicodeencode, equaltolike, greatest, ifnull2ifisnull, multiplespaces, percentage, randomcase, space2comment, space2plus, space2randomblank, unionalltounion, unmagicquotes'"
 Tamper_MsSQL	= "'between, charencode, charunicodeencode, equaltolike, greatest, multiplespaces, percentage, randomcase, sp_password, space2comment, space2dash, space2mssqlblank, space2mysqldash, space2plus, space2randomblank, unionalltounion, unmagicquotes'"
 Tamper_MySQL	= "'between, bluecoat, charencode, charunicodeencode, concat2concatws, equaltolike, greatest, halfversionedmorekeywords, ifnull2ifisnull, modsecurityversioned, modsecurityzeroversioned, multiplespaces, percentage, randomcase, space2comment, space2hash, space2morehash, space2mysqldash, space2plus, space2randomblank, unionalltounion, unmagicquotes, versionedkeywords, versionedmorekeywords, xforwardedfor'"
 
-Tamper_SeLEC	= Tamper_GeSQL
+Tamper_SeLEC	= Tamper_NoSQL
 
 # -------------------------------------------------------------------------------------
 # AUTHOR  : Terence Broadbent                                                    
@@ -402,9 +403,17 @@ while True:
       Tamper = input("[*] Please enter tamper value: ")
       if Tamper != "" and Tamper in TAList:
          Tamper = padding(Tamper, PAD2)
+         if Tamper.rstrip(" ") == "None":
+            Tamper_SeLEC = Tamper_NoSQL
+         if Tamper.rstrip(" ") == "General":
+            Tamper_SeLEC = Tamper_GeSQL
+         if Tamper.rstrip(" ") == "MsSQL":
+            Tamper_SeLEC = Tamper_MsSQL
+         if Tamper.rstrip(" ") == "MySQL":
+            Tamper_SeLEC = Tamper_MySQL
       else:
          Tamper = Restore 
-             
+                      
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
 # CONTRACT: GitHub
