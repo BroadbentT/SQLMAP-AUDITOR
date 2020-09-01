@@ -104,7 +104,7 @@ Tamper		= "None"
 CookieValue	= "k5ocvmp0ktfu4p7hse7sndgsh6"
 Technique	= "BEUSTQ"
 Parameter	= "id"
-Method 		= "None"
+Method 		= "GET"
 MethodUsed	= "GET"
 
 WebName 	= padding(WebName, PAD1)
