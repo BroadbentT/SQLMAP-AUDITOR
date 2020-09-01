@@ -60,15 +60,15 @@ def banner():
    
 def display():
    print('\u2554' + ('\u2550')*89 + '\u2566' + ('\u2550')*30 + '\u2566' + ('\u2550')*42 + '\u2557')
-   print('\u2551' + "[1] THE TARGET URL: " + WebName[:PAD1] 	 + '\u2551' + " [10] TAMPER STRING : " + Tamper[:PAD2]  + '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
-   print('\u2551' + "[2] PHP SESSION ID: " + CookieValue[:PAD1]	 + '\u2551' + " [11] VERBOSE LEVEL : " + VLevel[:PAD2]  + '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
-   print('\u2551' + "[3] USERNAME      : " + UserName[:PAD1]	 + '\u2551' + " [12] TEST LEVEL    : " + Level[:PAD2]	+ '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
-   print('\u2551' + "[4] PASSWORD      : " + PassWord[:PAD1]	 + '\u2551' + " [13] RISK LEVEL    : " + Risk[:PAD2]	+ '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
-   print('\u2551' + "[5] TARGET SYSTEM : " + OperatingSys[:PAD1] + '\u2551' + " [14] SET TIME OUT  : " + TimeOut[:PAD2] + '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
-   print('\u2551' + "[6] DATABASE TYPE : " + DataBase[:PAD1]	 + '\u2551' + " [15] SET TIME OUT  : " + TimeOut[:PAD2] + '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
-   print('\u2551' + "[7] USER AGENT    : " + UserAgent[:PAD1]	 + '\u2551' + " [16] SET RETRIES   : " + Retries[:PAD2]	+ '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
-   print('\u2551' + "[8] ENUM TECHNIQUE: " + Technique[:PAD1]	 + '\u2551' + " [17] SET THREADS   : " + Threads[:PAD2]	+ '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
-   print('\u2551' + "[9] PARAMETER     : " + Parameter[:PAD1]    + '\u2551' + " [xx] UNALLOCATED   : " + Blank1[:PAD2]	+ '\u2551' + " [xx] UNALLOCATED :" + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[1] THE TARGET URL: " + WebName[:PAD1] 	 + '\u2551' + " [10] TAMPER STRING : " + Tamper[:PAD2]    + '\u2551' + "                   " + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[2] PHP SESSION ID: " + CookieValue[:PAD1]	 + '\u2551' + " [11] HTTP METHOD   : " + Method[:PAD2]    + '\u2551' + "                   " + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[3] USERNAME      : " + UserName[:PAD1]	 + '\u2551' + " [12] VERBOSE LEVEL : " + VerbOut[:PAD2]	  + '\u2551' + "                   " + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[4] PASSWORD      : " + PassWord[:PAD1]	 + '\u2551' + " [13] RISK LEVEL    : " + Level[:PAD2]     + '\u2551' + "                   " + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[5] TARGET SYSTEM : " + OperatingSys[:PAD1] + '\u2551' + " [14] SET RISK LEVEL: " + Risk[:PAD2]      + '\u2551' + "                   " + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[6] DATABASE TYPE : " + DataBase[:PAD1]	 + '\u2551' + " [15] SET DELAY TIME: " + TimeDelay[:PAD2] + '\u2551' + "                   " + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[7] USER AGENT    : " + UserAgent[:PAD1]	 + '\u2551' + " [16] SET TIME OUT  : " + TimeOut[:PAD2]	  + '\u2551' + "                   " + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[8] ENUM TECHNIQUE: " + Technique[:PAD1]	 + '\u2551' + " [17] SET RETRIES   : " + Retries[:PAD2]	  + '\u2551' + "                   " + Blank2[:PAD3] + '\u2551')
+   print('\u2551' + "[9] PARAMETER     : " + Parameter[:PAD1]    + '\u2551' + " [18] SET THREADS   : " + Threads[:PAD2]	  + '\u2551' + "                   " + Blank2[:PAD3] + '\u2551')
    print('\u2560' + ('\u2550')*89 + '\u2569' + ('\u2550')*10 + ('\u2550')*20 + '\u2569' + ('\u2550')*42 + '\u2563')
    print('\u2551' + "[0] RUN AUDITOR     " + " "*(PAD1) + " "*(74) + '\u2551')
    print('\u255A' + ('\u2550')*90 + ('\u2550')*73 + '\u255D')
@@ -101,9 +101,11 @@ OperatingSys	= "Linux"
 DataBase 	= "MySQL"
 UserAgent	= "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"
 Tamper		= "None"
-CookieValue	= "7gusgp9fpo1ql5hr8gt2apah90"
+CookieValue	= "k5ocvmp0ktfu4p7hse7sndgsh6"
 Technique	= "BEUSTQ"
 Parameter	= "id"
+Method 		= "None"
+MethodUsed	= "GET"
 
 WebName 	= padding(WebName, PAD1)
 CookieValue	= padding(CookieValue, PAD1)
@@ -115,7 +117,7 @@ UserAgent	= padding(UserAgent, PAD1)
 Technique	= padding(Technique, PAD1)
 Parameter	= padding(Parameter, PAD1)
 
-VLevel		= "6"
+VerbOut		= "6"
 TimeDelay	= "5"
 TimeOut		= "10"
 Retries		= "3"
@@ -127,7 +129,7 @@ Blank2		= " "
 
 Blank1 		= padding(Blank1, PAD2)
 Blank2		= padding(Blank2, PAD3)
-VLevel		= padding(VLevel, PAD2)
+VerbOut		= padding(VerbOut, PAD2)
 TimeDelay	= padding(TimeDelay, PAD2)
 TimeOut		= padding(TimeOut, PAD2)
 Retries		= padding(Retries, PAD2)
@@ -135,10 +137,12 @@ Threads		= padding(Threads, PAD2)
 Level 		= padding(Level, PAD2)
 Risk		= padding(Risk, PAD2)
 Tamper		= padding(Tamper, PAD2)
+Method 		= padding(Method, PAD2)
 
 OSList		= "Linux, Windows"
 DBList		= "MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase, SAP MaxDB, Informix, MariaDB, Percona, MemSQL, TiDB2, CockroachDB, HSQLDB, H2, MonetDB, Apache Derby, Amazon Redshift, Vertica, Mckoi, Presto, Altibase, MimerSQL, CrateDB, Greenplum, Drizzle, Apache Ignite, Cubrid, InterSystems Cache, IRIS, eXtremeDB, FrontBase"
 TAList		= "None, General, MsSQL, MySQL"
+MEList		= "PUT, GET, POST, HEAD, DELETE, PATCH, TRACE, OPTIONS"
 VEList		= "1, 2, 3, 4, 5, 6"
 TEList		= "1, 2, 3, 4, 5"
 RIList		= "1, 2, 3"
@@ -182,7 +186,7 @@ while True:
       injectable = True
       print("[*] Audit start", datetime.datetime.now())
 
-      command = "sqlmap -v " + VLevel.rstrip(" ") + " -u " + WebName.rstrip(" ") + "-p " + Parameter.rstrip(" ") +  " --data='username=" + UserName.rstrip(" ") + "&password=" + PassWord.rstrip(" ") + "' --user-agent='" + UserAgent.rstrip(" ") + "' --delay=" + TimeDelay.rstrip(" ") + " --timeout=" + TimeOut.rstrip(" ") + " --retries=" + Retries.rstrip(" ") + " --keep-alive --threads=" + Threads.rstrip(" ") + " --batch --dbms=" + DataBase.rstrip(" ") + " --os=" + OperatingSys.rstrip(" ") + " --level=" + Level.rstrip(" ") + " --risk=" + Risk.rstrip(" ") + " --tamper=" + Tamper_SeLEC.rstrip(" ") + " --cookie='PHPSESSIONID=" + CookieValue.rstrip(" ") + "; security=low' --banner --is-dba --dbs --tables --technique=" + Technique.rstrip(" ") + " --dump-all -s logs/scan_report.txt --flush-session -t logs/scan_trace.txt --fresh-queries > logs/scan_out.txt"
+      command = "sqlmap -v " + VerbOut.rstrip(" ") + " -u " + WebName.rstrip(" ") + "-p " + Parameter.rstrip(" ") +  " --data='username=" + UserName.rstrip(" ") + "&password=" + PassWord.rstrip(" ") + "' --user-agent='" + UserAgent.rstrip(" ") + "' --method=" + MethodUsed.rstrip(" ") + " --delay=" + TimeDelay.rstrip(" ") + " --timeout=" + TimeOut.rstrip(" ") + " --retries=" + Retries.rstrip(" ") + " --keep-alive --threads=" + Threads.rstrip(" ") + " --dbms=" + DataBase.rstrip(" ") + " --os=" + OperatingSys.rstrip(" ") + " --level=" + Level.rstrip(" ") + " --risk=" + Risk.rstrip(" ") + " --tamper=" + Tamper_SeLEC.rstrip(" ") + " --cookie='PHPSESSIONID=" + CookieValue.rstrip(" ") + "; security=low' --banner --is-dba --dbs --tables --technique=" + Technique.rstrip(" ") + " --batch --flush-session --fresh-queries -s logs/scan_report.txt -t logs/scan_trace.txt > logs/scan_out.txt"
       # print(command); exit(0) # Debug command
       os.system(command)
       
@@ -413,23 +417,44 @@ while True:
             Tamper_SeLEC = Tamper_MySQL
       else:
          Tamper = Restore 
+         
+# ------------------------------------------------------------------------------------- 
+# AUTHOR  : Terence Broadbent
+# CONTRACT: GitHub
+# Version : 1.0
+# Details : Change the value of Method
+# AUTHOR  : Terence Broadbent
+# -------------------------------------------------------------------------------------
+
+   if selection =='11':
+      print("[+] Available Options:", MEList)
+      Restore = Method
+      Method = input("[*] Please enter VerbOut value: ")
+      if Method != "" and Method in MEList:
+         Method = padding(Method, PAD2)
+         if Method.rstrip(" ") == "None":
+            MethodUsed = ""
+         else:
+            MethodUsed = Method
+      else:
+         Method = Restore
                       
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
 # CONTRACT: GitHub
 # Version : 1.0
-# Details : Change the value of VLevel
+# Details : Change the value of VerbOut
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
-   if selection =='11':
+   if selection =='12':
       print("[+] Available Options:", VEList)
-      Restore = VLevel
-      VLevel = input("[*] Please enter VLevel value: ")
-      if VLevel != "" and VLevel in VEList:
-         VLevel = padding(VLevel, PAD2)
+      Restore = VerbOut
+      VerbOut = input("[*] Please enter VerbOut value: ")
+      if VerbOut != "" and VerbOut in VEList:
+         VerbOut = padding(VerbOut, PAD2)
       else:
-         VLevel = Restore
+         VerbOut = Restore
    
 # ------------------------------------------------------------------------------------- 
 # AUTHOR  : Terence Broadbent
@@ -439,7 +464,7 @@ while True:
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
-   if selection =='12':
+   if selection =='13':
       print("[+] Available Options:", TEList)
       Restore = Level
       Level = input("[*] Please enter test level value: ")
@@ -456,7 +481,7 @@ while True:
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
-   if selection =='13':
+   if selection =='14':
       print("[+] Available Options:", RIList)
       Restore = Risk
       Risk = input("[*] Please enter risk value: ")
@@ -473,7 +498,7 @@ while True:
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
-   if selection =='14':
+   if selection =='15':
       print("[+] Available Options:", DEList)
       Restore = TimeDelay
       TimeDelay = input("[*] Please enter time delay value: ")
@@ -490,7 +515,7 @@ while True:
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
-   if selection =='15':
+   if selection =='16':
       print("[+] Available Options:", TOList)
       Restore = TimeOut
       TimeOut = input("[*] Please enter timeOut value: ")
@@ -507,7 +532,7 @@ while True:
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
-   if selection =='16':
+   if selection =='17':
       print("[+] Available Options:", REList)
       Restore = Retries
       Retries = input("[*] Please enter retries value: ")
@@ -524,7 +549,7 @@ while True:
 # AUTHOR  : Terence Broadbent
 # -------------------------------------------------------------------------------------
 
-   if selection =='17':
+   if selection =='18':
       print("[+] Available Options:", TRList)
       Restore = Threads
       Threads = input("[*] Please enter threads value: ")
