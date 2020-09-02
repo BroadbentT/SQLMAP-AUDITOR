@@ -216,11 +216,13 @@ while True:
 
       for line in inputFile:
          if (line.strip().startswith("[")) and (line.find("[*]") == -1):         
-            if(line.lower().find("[critical]") > -1):					# Check for critical error messages
+            if(line.lower().find("[critical]") > -1):						# Check for critical error messages
                print(line)
-            if(line.lower().find("all parameters are not injectable") > -1):		# Check for special message indicating audit global status
+            if(line.lower().find("all parameters are not injectable") > -1):			# Check for special message indicating audit global status
                injectable = False  
-            line_part = line.strip().split(" ")					        # Report generation
+            if(line.lower().find("sqlmap identified the following injection point(s)") > -1):	# Check for special message indicating found injection point
+               injectable = True
+            line_part = line.strip().split(" ")					        	# Report generation
             catchdata = line_part[2] if len(line_part) > 2 else 'null'
             if catchdata == "testing":
                execution_datatime = line_part[0]
