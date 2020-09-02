@@ -183,7 +183,7 @@ while True:
 # -------------------------------------------------------------------------------------
 
    if selection =='0':
-      injectable = True
+      injectable = False
       print("[*] Audit start", datetime.datetime.now())
 
       command = "sqlmap -v " + VerbOut.rstrip(" ") + " -u " + WebName.rstrip(" ") + "-p " + Parameter.rstrip(" ") +  " --data='username=" + UserName.rstrip(" ") + "&password=" + PassWord.rstrip(" ") + "' --user-agent='" + UserAgent.rstrip(" ") + "' --method=" + MethodUsed.rstrip(" ") + " --delay=" + TimeDelay.rstrip(" ") + " --timeout=" + TimeOut.rstrip(" ") + " --retries=" + Retries.rstrip(" ") + " --keep-alive --threads=" + Threads.rstrip(" ") + " --dbms=" + DataBase.rstrip(" ") + " --os=" + OperatingSys.rstrip(" ") + " --level=" + Level.rstrip(" ") + " --risk=" + Risk.rstrip(" ") + " --tamper=" + Tamper_SeLEC.rstrip(" ") + " --cookie='PHPSESSIONID=" + CookieValue.rstrip(" ") + "; security=low' --banner --is-dba --dbs --tables --technique=" + Technique.rstrip(" ") + " --batch --flush-session --fresh-queries -s logs/scan_report.txt -t logs/scan_trace.txt > logs/scan_out.txt"
@@ -217,11 +217,11 @@ while True:
       for line in inputFile:
          if (line.strip().startswith("[")) and (line.find("[*]") == -1):         
             if(line.lower().find("[critical]") > -1):						# Check for critical error messages
-               print(line)
-            if(line.lower().find("all parameters are not injectable") > -1):			# Check for special message indicating audit global status
-               injectable = False  
+               print(line) 
             if(line.lower().find("sqlmap identified the following injection point(s)") > -1):	# Check for special message indicating found injection point
                injectable = True
+            if(line.lower().find("all parameters are not injectable") > -1):			# Check for special message indicating audit global status
+               injectable = False 
             line_part = line.strip().split(" ")					        	# Report generation
             catchdata = line_part[2] if len(line_part) > 2 else 'null'
             if catchdata == "testing":
@@ -238,7 +238,7 @@ while True:
 # Details : Write global audit stats line.
 # -------------------------------------------------------------------------------------
 
-      if(injectable):
+      if injectable == False:
          outputFile.write("<h1 class=\"success\">SQLMap cannot find injectable parameters !</h1>")
       else:
          outputFile.write("<h1 class=\"fail\">SQLMap can find injectable parameters !</h1>")
