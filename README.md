@@ -24,7 +24,7 @@ RUNNING GUIDANCE
         During the week-end for a weekly audit case.
 
 ### CONSOLE DISPLAY
-![Screenshot](picture1.png) 
+[![SQLMAP AUDITOR](https://github.com/BroadbentT/SQLMAP-AUDITOR/blob/master/picture1.png)](https://youtu.be/_c8k4yIU3KU "SQLMAP Auditor")
 
 ### REPORT DISPLAY
 ![Screenshot](ExampleReport-1.png)
