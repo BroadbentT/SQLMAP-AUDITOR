@@ -225,38 +225,47 @@ while True:
       outputFile.write("<h1 class=\"success\">\t\t\tSQLMAP AUDITOR 2020</h1>")
 
 # -------------------------------------------------------------------------------------
-# Details : Read STDOUT file line by line.
+# Details : Read STDOUT file line by line and check results.
 # -------------------------------------------------------------------------------------
 
       for line in inputFile:
-         testparameter = MethUD.rstrip(" ") + " parameter " + Params.rstrip(" ") + " is vulnerable"
-         testparameter = testparameter.lower()
-         print(line)
-         if(line.lower().find(testparameter) > -1):						# Check for message indicating injection point found for parameter
+         testparameter = MethUD.rstrip(" ") + " parameter " + Params.rstrip(" ") + " is vulnerable".lower()
+
+         if(line.find(testparameter) != -1):							# Check for confirmation of injection points
+            print("[+] " + line.rstrip("\n"))            
             injectable = True                  
-            print("match")
-         if (line.strip().startswith("[")) and (line.find("[*]") == -1):         
-            if(line.lower().find("[critical]") > -1):						# Check for critical error messages
-               print(line)            
-            if(line.lower().find("sqlmap identified the following injection point(s)") > -1):	# Check for confirmation of injection points
-               injectable = True            
-            if(line.lower().find("all parameters are not injectable") > -1):			# Check for special message indicating audit global status
-               injectable = False                
+
+         if(line.find("sqlmap identified the following injection point(s)") != -1):		# Check for confirmation of injection points
+            print("[+] " + line.rstrip("\n"))            
+            injectable = True
+            
+         if(line.find("current user is DBA:") != -1):						# Print INFO data
+            print("[+] " + line.rstrip("\n"))   
+            
+         if(line.find("back-end DBMS:") != -1):							# Print INFO data
+            print("[+] " + line.rstrip("\n"))
+            
+         if(line.find("[CRITICAL]") != -1):							# Print INFO data
+            print("[+] " + line.rstrip("\n"))            
+                     
+         if(line.lower().find("all parameters are not injectable") != -1):			# Check for confirmation of injection points
+            print("[+] " + line.rstrip("\n"))            
+            injectable = False                
                
 # -------------------------------------------------------------------------------------
 # Details : Report Generation
 # -------------------------------------------------------------------------------------
                
-            line_part = line.strip().split(" ")
-            catchdata = line_part[2] if len(line_part) > 2 else 'null'
-            if catchdata == "testing":
-               execution_datatime = line_part[0]
-               execution_trace = ""
-               count = 2
-               while(count < len(line_part)):
-                  execution_trace = execution_trace + " " + line_part[count]
-                  count = count + 1 
-               outputFile.write("<tr><td>" + line_part[0] + "</td><td>" + execution_trace + "</td></tr>")                
+         line_part = line.strip().split(" ")
+         catchdata = line_part[2] if len(line_part) > 2 else 'null'
+         if catchdata == "testing":
+            execution_datatime = line_part[0]
+            execution_trace = ""
+            count = 2
+            while(count < len(line_part)):
+               execution_trace = execution_trace + " " + line_part[count]
+               count = count + 1 
+            outputFile.write("<tr><td>" + line_part[0] + "</td><td>" + execution_trace + "</td></tr>")                
       outputFile.write("</tbody></table>")  
       
 # -------------------------------------------------------------------------------------
